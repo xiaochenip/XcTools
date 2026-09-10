@@ -45,3 +45,6 @@ dist/**/*.dll
 dist/**/*.zip
 dist/**/XcTools.deps.json
 dist/**/XcTools.runtimeconfig.json
+
+# AutoCAD 引用程序集（从 AutoCAD 安装目录复制，不入库）
+ref/**/*.dll
