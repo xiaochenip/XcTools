@@ -1,0 +1,5 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- 这里可以添加WPF资源，如图标、样式等 -->
+    <!-- 目前暂时为空，后续可以添加工具栏图标 -->
+</ResourceDictionary>

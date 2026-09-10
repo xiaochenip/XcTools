@@ -1,0 +1,33 @@
+<Window x:Class="XcTools.Views.CategorySelectDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="选择分类"
+        Height="400" Width="350"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 分类树 -->
+        <TreeView Grid.Row="0" x:Name="categoryTreeView" Margin="5" Background="White">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding SubCategories}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="16" Height="16" Margin="2" Source="{Binding Icon}"/>
+                        <TextBlock Text="{Binding Name}" Margin="2"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        
+        <!-- 按钮区域 -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+            <Button x:Name="btnNewCategory" Content="新建分类" Width="80" Height="25" Margin="5" Click="BtnNewCategory_Click"/>
+            <Button x:Name="btnCancel" Content="取消" Width="60" Height="25" Margin="5" Click="BtnCancel_Click"/>
+            <Button x:Name="btnOK" Content="确定" Width="60" Height="25" Margin="5" Click="BtnOK_Click" IsDefault="True"/>
+        </StackPanel>
+    </Grid>
+</Window>

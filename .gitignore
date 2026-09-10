@@ -1,0 +1,40 @@
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# NuGet
+packages/
+*.nupkg
+snupkg
+
+# AutoCAD runtime artifacts
+*.log
+*冲突文件*
+thumbnails/
+XcTools_Menu*.cuix
+XcTools_Menu*.mnr
+!dist/XcTools_v1.0.0/*.mnr
+!dist/XcTools_v1.0.0/*.cuix
+
+# macOS
+.DS_Store
+
+# Release artifacts (keep dist/ which is the final zip)
+# dist/ is committed

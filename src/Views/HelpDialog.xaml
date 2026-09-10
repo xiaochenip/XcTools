@@ -1,0 +1,145 @@
+<Window x:Class="XcTools.Views.HelpDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="小辰CAD工具箱 - 帮助"
+        Height="500" Width="650"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 标题 -->
+        <Border Grid.Row="0" Background="#5A9FD4" Padding="15" CornerRadius="5">
+            <StackPanel>
+                <TextBlock Text="小辰CAD工具箱" FontSize="20" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="v1.0.0" FontSize="12" Foreground="White" Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- 帮助内容 -->
+        <ScrollViewer Grid.Row="1" Margin="0,10" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- 介绍 -->
+                <GroupBox Header="📋 功能介绍" Margin="0,0,0,10" Padding="10">
+                    <StackPanel>
+                        <TextBlock Text="小辰CAD工具箱是一个便捷的CAD图库管理工具，支持图块快速插入、管理和分类存储。" TextWrapping="Wrap" FontSize="12"/>
+                        <TextBlock Text="" Height="5"/>
+                        <TextBlock Text="主要功能包括：" TextWrapping="Wrap" FontSize="12" FontWeight="Bold"/>
+                        <TextBlock Text="• 图库管理：浏览和管理您的图块" TextWrapping="Wrap" FontSize="12"/>
+                        <TextBlock Text="• 分类存储：按分类组织图块" TextWrapping="Wrap" FontSize="12"/>
+                        <TextBlock Text="• 快速插入：双击或右键插入图块" TextWrapping="Wrap" FontSize="12"/>
+                        <TextBlock Text="• 图块添加：从文件或CAD图形添加图块" TextWrapping="Wrap" FontSize="12"/>
+                    </StackPanel>
+                </GroupBox>
+                
+                <!-- 命令列表 -->
+                <GroupBox Header="⌨️ 命令列表" Margin="0,0,0,10" Padding="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Border Grid.Row="0" Grid.Column="0" Background="#F0F0F0" Padding="5">
+                            <TextBlock Text="XCH" FontWeight="Bold" FontFamily="Consolas"/>
+                        </Border>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="显示欢迎信息和命令列表" VerticalAlignment="Center" Padding="5"/>
+                        
+                        <Border Grid.Row="1" Grid.Column="0" Background="#F0F0F0" Padding="5">
+                            <TextBlock Text="XTK" FontWeight="Bold" FontFamily="Consolas"/>
+                        </Border>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="打开/关闭图库主界面" VerticalAlignment="Center" Padding="5"/>
+                        
+                        <Border Grid.Row="2" Grid.Column="0" Background="#F0F0F0" Padding="5">
+                            <TextBlock Text="XCI" FontWeight="Bold" FontFamily="Consolas"/>
+                        </Border>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="插入选中图块" VerticalAlignment="Center" Padding="5"/>
+                        
+                        <Border Grid.Row="3" Grid.Column="0" Background="#F0F0F0" Padding="5">
+                            <TextBlock Text="XCM" FontWeight="Bold" FontFamily="Consolas"/>
+                        </Border>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="连续插入模式" VerticalAlignment="Center" Padding="5"/>
+                        
+                        <Border Grid.Row="4" Grid.Column="0" Background="#F0F0F0" Padding="5">
+                            <TextBlock Text="XAD" FontWeight="Bold" FontFamily="Consolas"/>
+                        </Border>
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="选图入库（选中CAD图块保存到图库）" VerticalAlignment="Center" Padding="5"/>
+                        
+                        <Border Grid.Row="5" Grid.Column="0" Background="#F0F0F0" Padding="5">
+                            <TextBlock Text="XCRF" FontWeight="Bold" FontFamily="Consolas"/>
+                        </Border>
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="刷新缩略图" VerticalAlignment="Center" Padding="5"/>
+                        
+                        <Border Grid.Row="6" Grid.Column="0" Background="#F0F0F0" Padding="5">
+                            <TextBlock Text="XCFD" FontWeight="Bold" FontFamily="Consolas"/>
+                        </Border>
+                        <TextBlock Grid.Row="6" Grid.Column="1" Text="搜索图块" VerticalAlignment="Center" Padding="5"/>
+                        
+                        <Border Grid.Row="7" Grid.Column="0" Background="#F0F0F0" Padding="5">
+                            <TextBlock Text="XCF" FontWeight="Bold" FontFamily="Consolas"/>
+                        </Border>
+                        <TextBlock Grid.Row="7" Grid.Column="1" Text="新建分类" VerticalAlignment="Center" Padding="5"/>
+                        
+                        <Border Grid.Row="8" Grid.Column="0" Background="#F0F0F0" Padding="5">
+                            <TextBlock Text="XCREN" FontWeight="Bold" FontFamily="Consolas"/>
+                        </Border>
+                        <TextBlock Grid.Row="8" Grid.Column="1" Text="重命名图块/分类" VerticalAlignment="Center" Padding="5"/>
+                        
+                        <Border Grid.Row="9" Grid.Column="0" Background="#F0F0F0" Padding="5">
+                            <TextBlock Text="XCDEL" FontWeight="Bold" FontFamily="Consolas"/>
+                        </Border>
+                        <TextBlock Grid.Row="9" Grid.Column="1" Text="删除图块/分类" VerticalAlignment="Center" Padding="5"/>
+                        
+                        <Border Grid.Row="10" Grid.Column="0" Background="#F0F0F0" Padding="5">
+                            <TextBlock Text="XHP" FontWeight="Bold" FontFamily="Consolas"/>
+                        </Border>
+                        <TextBlock Grid.Row="10" Grid.Column="1" Text="显示帮助信息" VerticalAlignment="Center" Padding="5"/>
+                    </Grid>
+                </GroupBox>
+                
+                <!-- 使用说明 -->
+                <GroupBox Header="📖 使用说明" Padding="10">
+                    <StackPanel>
+                        <TextBlock Text="1. 打开图库主界面" TextWrapping="Wrap" FontSize="12" FontWeight="Bold"/>
+                        <TextBlock Text="   输入 XTK 命令打开图库管理界面，左侧是分类树，右侧显示图块缩略图。" TextWrapping="Wrap" FontSize="12"/>
+                        <TextBlock Text="" Height="3"/>
+                        <TextBlock Text="2. 插入图块" TextWrapping="Wrap" FontSize="12" FontWeight="Bold"/>
+                        <TextBlock Text="   双击图块缩略图，或右键选择“插入”，然后按提示输入比例和旋转角度。" TextWrapping="Wrap" FontSize="12"/>
+                        <TextBlock Text="" Height="3"/>
+                        <TextBlock Text="3. 添加图块" TextWrapping="Wrap" FontSize="12" FontWeight="Bold"/>
+                        <TextBlock Text="   点击“选图入库”按钮，支持从文件选择或从CAD图形选择图块添加到图库。" TextWrapping="Wrap" FontSize="12"/>
+                        <TextBlock Text="" Height="3"/>
+                        <TextBlock Text="4. 管理图块" TextWrapping="Wrap" FontSize="12" FontWeight="Bold"/>
+                        <TextBlock Text="   右键图块可进行重命名、删除等操作。" TextWrapping="Wrap" FontSize="12"/>
+                        <TextBlock Text="" Height="3"/>
+                        <TextBlock Text="5. 分类管理" TextWrapping="Wrap" FontSize="12" FontWeight="Bold"/>
+                        <TextBlock Text="   在分类选择对话框中可新建分类，在图库管理器中可添加子分类。" TextWrapping="Wrap" FontSize="12"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!-- 底部按钮 -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="关闭" Width="80" Height="28" Click="CloseButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

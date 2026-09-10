@@ -1,0 +1,215 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- net48 可用性探测：ref\net48\ 目录放入旧版 AutoCAD（2021-2024）的
+       acmgd/acdbmgd/accoremgd/AdWindows 四个 DLL 后，net48 目标自动参与编译；
+       没有则只编译 net8（AutoCAD 2025/2026）。 -->
+  <PropertyGroup Condition="Exists('ref\net48\acmgd.dll') AND Exists('ref\net48\acdbmgd.dll')">
+    <Net48Available>true</Net48Available>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFrameworks Condition="'$(Net48Available)' == 'true'">net8.0-windows;net48</TargetFrameworks>
+    <TargetFrameworks Condition="'$(Net48Available)' != 'true'">net8.0-windows</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <AssemblyName>XcTools</AssemblyName>
+    <RootNamespace>XcTools</RootNamespace>
+    <OutputPath>bin\$(Configuration)\$(TargetFramework)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\$(TargetFramework)\</IntermediateOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- ============ net8 目标：AutoCAD 2025/2026 ============ -->
+    <Reference Include="acdbmgd.dll" Condition="'$(TargetFramework)' == 'net8.0-windows' AND Exists('D:\Program Files\AutoCAD 2026\acdbmgd.dll')">
+      <HintPath>D:\Program Files\AutoCAD 2026\acdbmgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="acmgd.dll" Condition="'$(TargetFramework)' == 'net8.0-windows' AND Exists('D:\Program Files\AutoCAD 2026\acmgd.dll')">
+      <HintPath>D:\Program Files\AutoCAD 2026\acmgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="accoremgd.dll" Condition="'$(TargetFramework)' == 'net8.0-windows' AND Exists('D:\Program Files\AutoCAD 2026\accoremgd.dll')">
+      <HintPath>D:\Program Files\AutoCAD 2026\accoremgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AdWindows.dll" Condition="'$(TargetFramework)' == 'net8.0-windows' AND Exists('D:\Program Files\AutoCAD 2026\AdWindows.dll')">
+      <HintPath>D:\Program Files\AutoCAD 2026\AdWindows.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- 2025版本作为备选 -->
+    <Reference Include="acdbmgd.dll" Condition="'$(TargetFramework)' == 'net8.0-windows' AND Exists('D:\Software\Autodesk\AutoCAD 2025\acdbmgd.dll')">
+      <HintPath>D:\Software\Autodesk\AutoCAD 2025\acdbmgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="acmgd.dll" Condition="'$(TargetFramework)' == 'net8.0-windows' AND Exists('D:\Software\Autodesk\AutoCAD 2025\acmgd.dll')">
+      <HintPath>D:\Software\Autodesk\AutoCAD 2025\acmgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="accoremgd.dll" Condition="'$(TargetFramework)' == 'net8.0-windows' AND Exists('D:\Software\Autodesk\AutoCAD 2025\accoremgd.dll')">
+      <HintPath>D:\Software\Autodesk\AutoCAD 2025\accoremgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AdWindows.dll" Condition="'$(TargetFramework)' == 'net8.0-windows' AND Exists('D:\Software\Autodesk\AutoCAD 2025\AdWindows.dll')">
+      <HintPath>D:\Software\Autodesk\AutoCAD 2025\AdWindows.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+
+    <!-- ============ net48 目标：AutoCAD 2021-2024 ============
+         从任意一台装有旧版 AutoCAD 的机器，把安装根目录下的四个 DLL
+         拷入本项目 ref\net48\ 即可（用 2021 的编译可兼容 2021-2024 全系） -->
+    <Reference Include="acdbmgd" Condition="'$(TargetFramework)' == 'net48' AND Exists('ref\net48\acdbmgd.dll')">
+      <HintPath>ref\net48\acdbmgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="acmgd" Condition="'$(TargetFramework)' == 'net48' AND Exists('ref\net48\acmgd.dll')">
+      <HintPath>ref\net48\acmgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="accoremgd" Condition="'$(TargetFramework)' == 'net48' AND Exists('ref\net48\accoremgd.dll')">
+      <HintPath>ref\net48\accoremgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AdWindows" Condition="'$(TargetFramework)' == 'net48' AND Exists('ref\net48\AdWindows.dll')">
+      <HintPath>ref\net48\AdWindows.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+
+    <!-- net48 额外框架程序集（InputBox 用 VB；dynamic 用 Microsoft.CSharp；.cuix ZIP 生成需要压缩） -->
+    <Reference Include="Microsoft.VisualBasic" Condition="'$(TargetFramework)' == 'net48'" />
+    <Reference Include="Microsoft.CSharp" Condition="'$(TargetFramework)' == 'net48'" />
+    <Reference Include="System.IO.Compression" Condition="'$(TargetFramework)' == 'net48'" />
+    <Reference Include="System.IO.Compression.FileSystem" Condition="'$(TargetFramework)' == 'net48'" />
+  </ItemGroup>
+
+  <!-- 自动搜索AutoCAD安装目录的目标（仅 net8 目标使用） -->
+  <Target Name="FindAutoCADReferences" BeforeTargets="ResolveReferences" Condition="'$(TargetFramework)' == 'net8.0-windows'">
+    <!-- 定义AutoCAD常见安装模式 -->
+    <PropertyGroup>
+      <AutoCADPattern>Autodesk\AutoCAD</AutoCADPattern>
+      <AutoCAD64Pattern>Program Files\$(AutoCADPattern)</AutoCAD64Pattern>
+      <AutoCAD32Pattern>Program Files (x86)\$(AutoCADPattern)</AutoCAD32Pattern>
+    </PropertyGroup>
+
+    <!-- 第一步：从注册表获取AutoCAD安装路径（最可靠方法） -->
+    <PropertyGroup>
+      <!-- 检查64位注册表 -->
+      <RegQuery64>reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Autodesk\AutoCAD" /s /f "InstallPath" | findstr "InstallPath"</RegQuery64>
+      <!-- 检查32位注册表 -->
+      <RegQuery32>reg query "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Autodesk\AutoCAD" /s /f "InstallPath" | findstr "InstallPath"</RegQuery32>
+    </PropertyGroup>
+
+    <!-- 执行注册表查询 -->
+    <Exec Command="$(RegQuery64)" ConsoleToMSBuild="true" IgnoreExitCode="true">
+      <Output TaskParameter="ConsoleOutput" ItemName="RegOutput64" />
+    </Exec>
+    <Exec Command="$(RegQuery32)" ConsoleToMSBuild="true" IgnoreExitCode="true">
+      <Output TaskParameter="ConsoleOutput" ItemName="RegOutput32" />
+    </Exec>
+
+    <!-- 解析注册表输出 -->
+    <PropertyGroup>
+      <!-- 合并64位和32位输出 -->
+      <RegOutput>@(RegOutput64->'%(Identity)');@(RegOutput32->'%(Identity)')</RegOutput>
+      <!-- 提取安装路径 -->
+      <RegOutputClean>$(RegOutput.Replace('InstallPath    REG_SZ', '').Replace(';', '').Trim())</RegOutputClean>
+    </PropertyGroup>
+
+    <!-- 从注册表结果中选择最新版本 -->
+    <PropertyGroup>
+      <!-- 如果注册表找到结果，直接使用 -->
+      <LatestAutoCADPath Condition="'$(RegOutputClean)' != ''">$(RegOutputClean)</LatestAutoCADPath>
+    </PropertyGroup>
+
+    <!-- 添加特定的AutoCAD安装路径作为中间优先级 -->
+    <PropertyGroup>
+      <!-- 检查用户指定的特定路径 -->
+      <SpecificAutoCADPath>D:\Software\Autodesk\AutoCAD 2025</SpecificAutoCADPath>
+      <LatestAutoCADPath Condition="!Exists('$(LatestAutoCADPath)') AND Exists('$(SpecificAutoCADPath)')">$(SpecificAutoCADPath)</LatestAutoCADPath>
+      <!-- 添加用户指定的2026版本路径 -->
+      <SpecificAutoCADPath2026>D:\Program Files\AutoCAD 2026</SpecificAutoCADPath2026>
+      <LatestAutoCADPath Condition="!Exists('$(LatestAutoCADPath)') AND Exists('$(SpecificAutoCADPath2026)')">$(SpecificAutoCADPath2026)</LatestAutoCADPath>
+    </PropertyGroup>
+
+    <!-- 第二步：如果注册表查询失败，尝试常见路径搜索 -->
+    <PropertyGroup Condition="!Exists('$(LatestAutoCADPath)')">
+      <!-- 定义所有可能的AutoCAD版本 -->
+      <AutoCADVersions>2026;2025</AutoCADVersions>
+      <!-- 定义所有可能的驱动器 -->
+      <AllDrives>C:;D:;E:;F:;G:;H:;I:;J:;K:;L:;M:;N:;O:;P:;Q:;R:;S:;T:;U:;V:;W:;X:;Y:;Z:</AllDrives>
+    </PropertyGroup>
+
+    <!-- 为每个驱动器和版本生成可能的路径 -->
+    <ItemGroup>
+      <!-- 64位安装 -->
+      <PossiblePaths Include="$(AllDrives.Split(';'))" Exclude="">
+        <Path>%(Identity)\$(AutoCAD64Pattern) 2026</Path>
+      </PossiblePaths>
+      <PossiblePaths Include="$(AllDrives.Split(';'))" Exclude="">
+        <Path>%(Identity)\$(AutoCAD64Pattern) 2025</Path>
+      </PossiblePaths>
+
+      <!-- 32位安装 -->
+      <PossiblePaths Include="$(AllDrives.Split(';'))" Exclude="">
+        <Path>%(Identity)\$(AutoCAD32Pattern) 2026</Path>
+      </PossiblePaths>
+      <PossiblePaths Include="$(AllDrives.Split(';'))" Exclude="">
+        <Path>%(Identity)\$(AutoCAD32Pattern) 2025</Path>
+      </PossiblePaths>
+    </ItemGroup>
+
+    <!-- 检查每个可能的路径是否存在 -->
+    <ItemGroup>
+      <ValidPaths Include="@(PossiblePaths->'%(Path)')" Condition="Exists('%(Identity)')" />
+    </ItemGroup>
+
+    <!-- 从有效路径中选择最新版本 -->
+    <PropertyGroup>
+      <!-- 2026版本 -->
+      <LatestAutoCADPath Condition="!Exists('$(LatestAutoCADPath)') AND Exists('C:\$(AutoCAD64Pattern) 2026')">C:\$(AutoCAD64Pattern) 2026</LatestAutoCADPath>
+      <LatestAutoCADPath Condition="!Exists('$(LatestAutoCADPath)') AND Exists('D:\$(AutoCAD64Pattern) 2026')">D:\$(AutoCAD64Pattern) 2026</LatestAutoCADPath>
+      <LatestAutoCADPath Condition="!Exists('$(LatestAutoCADPath)') AND Exists('E:\$(AutoCAD64Pattern) 2026')">E:\$(AutoCAD64Pattern) 2026</LatestAutoCADPath>
+      <LatestAutoCADPath Condition="!Exists('$(LatestAutoCADPath)') AND Exists('F:\$(AutoCAD64Pattern) 2026')">F:\$(AutoCAD64Pattern) 2026</LatestAutoCADPath>
+      <LatestAutoCADPath Condition="!Exists('$(LatestAutoCADPath)') AND Exists('G:\$(AutoCAD64Pattern) 2026')">G:\$(AutoCAD64Pattern) 2026</LatestAutoCADPath>
+      <LatestAutoCADPath Condition="!Exists('$(LatestAutoCADPath)') AND Exists('H:\$(AutoCAD64Pattern) 2026')">H:\$(AutoCAD64Pattern) 2026</LatestAutoCADPath>
+
+      <!-- 2025版本 -->
+      <LatestAutoCADPath Condition="!Exists('$(LatestAutoCADPath)') AND Exists('C:\$(AutoCAD64Pattern) 2025')">C:\$(AutoCAD64Pattern) 2025</LatestAutoCADPath>
+      <LatestAutoCADPath Condition="!Exists('$(LatestAutoCADPath)') AND Exists('D:\$(AutoCAD64Pattern) 2025')">D:\$(AutoCAD64Pattern) 2025</LatestAutoCADPath>
+      <LatestAutoCADPath Condition="!Exists('$(LatestAutoCADPath)') AND Exists('E:\$(AutoCAD64Pattern) 2025')">E:\$(AutoCAD64Pattern) 2025</LatestAutoCADPath>
+      <LatestAutoCADPath Condition="!Exists('$(LatestAutoCADPath)') AND Exists('F:\$(AutoCAD64Pattern) 2025')">F:\$(AutoCAD64Pattern) 2025</LatestAutoCADPath>
+      <LatestAutoCADPath Condition="!Exists('$(LatestAutoCADPath)') AND Exists('G:\$(AutoCAD64Pattern) 2025')">G:\$(AutoCAD64Pattern) 2025</LatestAutoCADPath>
+      <LatestAutoCADPath Condition="!Exists('$(LatestAutoCADPath)') AND Exists('H:\$(AutoCAD64Pattern) 2025')">H:\$(AutoCAD64Pattern) 2025</LatestAutoCADPath>
+    </PropertyGroup>
+
+    <!-- 如果找到AutoCAD路径，添加引用 -->
+    <ItemGroup>
+      <Reference Include="acdbmgd.dll" Condition="Exists('$(LatestAutoCADPath)\acdbmgd.dll')">
+        <HintPath>$(LatestAutoCADPath)\acdbmgd.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="acmgd.dll" Condition="Exists('$(LatestAutoCADPath)\acmgd.dll')">
+        <HintPath>$(LatestAutoCADPath)\acmgd.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="accoremgd.dll" Condition="Exists('$(LatestAutoCADPath)\accoremgd.dll')">
+        <HintPath>$(LatestAutoCADPath)\accoremgd.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="AdWindows.dll" Condition="Exists('$(LatestAutoCADPath)\AdWindows.dll')">
+        <HintPath>$(LatestAutoCADPath)\AdWindows.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+    </ItemGroup>
+
+    <!-- 显示找到的AutoCAD版本 -->
+    <Message Text="找到AutoCAD安装路径: $(LatestAutoCADPath)" Importance="High" Condition="Exists('$(LatestAutoCADPath)')" />
+    <Message Text="未找到AutoCAD安装路径，请手动添加引用" Importance="High" Condition="!Exists('$(LatestAutoCADPath)')" />
+  </Target>
+
+</Project>
