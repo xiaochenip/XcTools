@@ -124,5 +124,5 @@ library/
 
 <p align="center">
   小辰CAD工具箱 — 让 CAD 设计更高效<br>
-  <a href="https://qm.qq.com/qgroup/wx27l339mha22">QQ 交流群：964066654</a>
+  <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=SGMhgdWVYZFnGfh5Y5%2BOeF56UNrHt5rAq6Knrk6LFF7nYnbkdY%2Fit7vMXl5JJIPp&busi_data=eyJncm91cENvZGUiOiI5NjQwNjY2NTQiLCJ0b2tlbiI6Ik9Hakg2b29GdU9JL1pnb1B4V0xPMHdQRmRsNlNZeUVNWmtqYVZmRS91UXNMeURxOEJIU2twOVN4N0lGcUJaUTMiLCJ1aW4iOiIyMDYyMDc3NTA1In0%3D&data=pO9xuT3mYefsfhSUVz60x1rgZZkHV-Zrxf1UlxleR2_igJHczc1HDKZZLqNBnxDsdSKRziHIa1sJeNgMGwYSgw&svctype=4&tempid=h5_group_info">QQ 交流群：964066654</a>
 </p>
