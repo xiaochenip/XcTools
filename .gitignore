@@ -38,3 +38,10 @@ XcTools_Menu*.mnr
 
 # Release artifacts (keep dist/ which is the final zip)
 # dist/ is committed
+
+# 编译产物（不提交 DLL、依赖清单与压缩包）
+收集旧版DLL.bat
+dist/**/*.dll
+dist/**/*.zip
+dist/**/XcTools.deps.json
+dist/**/XcTools.runtimeconfig.json
