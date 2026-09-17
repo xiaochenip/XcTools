@@ -1,0 +1,44 @@
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# NuGet
+packages/
+*.nupkg
+snupkg
+
+# AutoCAD runtime artifacts
+*.log
+*冲突文件*
+thumbnails/
+XcTools_Menu*.cuix
+XcTools_Menu*.mnr
+
+# macOS
+.DS_Store
+
+# 发布产物（本地构建后生成，不入库）
+dist/
+
+# 收集旧版工具脚本（本地工具，不入库）
+收集旧版DLL.bat
+
+# AutoCAD 引用程序集（从 AutoCAD 安装目录复制，不入库）
+ref/**/*.dll
